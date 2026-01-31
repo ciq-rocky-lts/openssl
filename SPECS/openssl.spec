@@ -29,7 +29,7 @@ print(string.sub(hash, 0, 16))
 Summary: Utilities from the general purpose cryptography library with TLS implementation
 Name: openssl
 Version: 3.2.2
-Release: 6%{?dist}.1
+Release: 6.1+1.1%{?dist}
 Epoch: 1
 # We have to remove certain patented algorithms from the openssl source
 # tarball with the hobble-openssl script which is included below.
@@ -172,6 +172,7 @@ Patch132: 0132-Add-explicit-testing-of-ALN-and-NPN-in-sslapitest.patch
 Patch133: 0133-Add-a-test-for-an-empty-NextProto-message.patch
 Patch136: 0136-CVE-2024-6119.patch
 Patch140: 0140-CVE-2024-12797.patch
+Patch143: 0143-CVE-2025-15467.patch
 
 License: ASL 2.0
 URL: http://www.openssl.org/
@@ -511,6 +512,9 @@ ln -s /etc/crypto-policies/back-ends/openssl_fips.config $RPM_BUILD_ROOT%{_sysco
 %ldconfig_scriptlets libs
 
 %changelog
+* Thu Jan 29 2026 Igor Ustinov <igus68@gmail.com> - 1:3.2.2-6.1+1.1
+- Fix CVE-2025-15467 Correct handling of AEAD-encrypted CMS with inadmissibly long IV
+
 * Wed Jan 29 2025 Dmitry Belyavskiy <dbelyavs@redhat.com> - 1:3.2.2-6.1
 - RFC7250 handshakes with unauthenticated servers don't abort as expected (CVE-2024-12797)
   Resolves: RHEL-76755
