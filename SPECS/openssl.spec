@@ -29,7 +29,7 @@ print(string.sub(hash, 0, 16))
 Summary: Utilities from the general purpose cryptography library with TLS implementation
 Name: openssl
 Version: 3.2.2
-Release: 6.1+1.1%{?dist}
+Release: 6.1+1.2%{?dist}
 Epoch: 1
 # We have to remove certain patented algorithms from the openssl source
 # tarball with the hobble-openssl script which is included below.
@@ -512,6 +512,9 @@ ln -s /etc/crypto-policies/back-ends/openssl_fips.config $RPM_BUILD_ROOT%{_sysco
 %ldconfig_scriptlets libs
 
 %changelog
+* Tue Mar 03 2026 Jeff Uphoff <juphoff@ciq.com> - 1:3.2.2-6.1+1.2
+- Increment release for multilib i686 rebuild
+
 * Thu Jan 29 2026 Igor Ustinov <igus68@gmail.com> - 1:3.2.2-6.1+1.1
 - Fix CVE-2025-15467 Correct handling of AEAD-encrypted CMS with inadmissibly long IV
 
