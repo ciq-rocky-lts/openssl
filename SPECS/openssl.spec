@@ -29,7 +29,7 @@ print(string.sub(hash, 0, 16))
 Summary: Utilities from the general purpose cryptography library with TLS implementation
 Name: openssl
 Version: 3.2.2
-Release: 6.1+1.1%{?dist}
+Release: 6.1+1.1.1%{?dist}
 Epoch: 1
 # We have to remove certain patented algorithms from the openssl source
 # tarball with the hobble-openssl script which is included below.
@@ -173,6 +173,14 @@ Patch133: 0133-Add-a-test-for-an-empty-NextProto-message.patch
 Patch136: 0136-CVE-2024-6119.patch
 Patch140: 0140-CVE-2024-12797.patch
 Patch143: 0143-CVE-2025-15467.patch
+# CVE-2026-14457 — upstream backport
+Patch144: openssl-3.2.2-CVE-2026-14457.patch
+# CVE-2026-54874 — upstream backport
+Patch145: openssl-3.2.2-CVE-2026-54874.patch
+# CVE-2026-63072 — upstream backport
+Patch146: openssl-3.2.2-CVE-2026-63072.patch
+# CVE-2026-63075 — upstream backport
+Patch147: openssl-3.2.2-CVE-2026-63075.patch
 
 License: ASL 2.0
 URL: http://www.openssl.org/
@@ -512,6 +520,12 @@ ln -s /etc/crypto-policies/back-ends/openssl_fips.config $RPM_BUILD_ROOT%{_sysco
 %ldconfig_scriptlets libs
 
 %changelog
+* Thu Sep 03 2026 Jason Rodriguez <jrodriguez@ciq.com> - 1:3.2.2-6.1+1.1.1
+- Fix CVE-2026-14457
+- Fix CVE-2026-54874
+- Fix CVE-2026-63072
+- Fix CVE-2026-63075
+
 * Thu Jan 29 2026 Igor Ustinov <igus68@gmail.com> - 1:3.2.2-6.1+1.1
 - Fix CVE-2025-15467 Correct handling of AEAD-encrypted CMS with inadmissibly long IV
 
