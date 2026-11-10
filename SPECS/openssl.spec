@@ -29,7 +29,7 @@ print(string.sub(hash, 0, 16))
 Summary: Utilities from the general purpose cryptography library with TLS implementation
 Name: openssl
 Version: 3.2.2
-Release: 6.1+1.2%{?dist}
+Release: 6.1+1.3%{?dist}
 Epoch: 1
 # We have to remove certain patented algorithms from the openssl source
 # tarball with the hobble-openssl script which is included below.
@@ -173,6 +173,10 @@ Patch133: 0133-Add-a-test-for-an-empty-NextProto-message.patch
 Patch136: 0136-CVE-2024-6119.patch
 Patch140: 0140-CVE-2024-12797.patch
 Patch143: 0143-CVE-2025-15467.patch
+Patch144: 0144-CVE-2026-63074.patch
+Patch145: 0145-CVE-2026-63076.patch
+Patch146: 0146-CVE-2026-14457.patch
+Patch147: 0147-CVE-2026-63075.patch
 
 License: ASL 2.0
 URL: http://www.openssl.org/
@@ -512,6 +516,12 @@ ln -s /etc/crypto-policies/back-ends/openssl_fips.config $RPM_BUILD_ROOT%{_sysco
 %ldconfig_scriptlets libs
 
 %changelog
+* Mon Nov 09 2026 Jeff Uphoff <juphoff@ciq.com> - 1:3.2.2-6.1+1.3
+- Fix CVE-2026-63074 Roll back cached CMP extraCerts on rejected messages
+- Fix CVE-2026-63076 Check CMP PBM protectionAlg parameter type
+- Fix CVE-2026-14457 Handle signature_algorithms_cert in key-only RPK context
+- Fix CVE-2026-63075 Don't store ACK-only QUIC packets in TX history
+
 * Tue Mar 03 2026 Jeff Uphoff <juphoff@ciq.com> - 1:3.2.2-6.1+1.2
 - Increment release for multilib i686 rebuild
 
